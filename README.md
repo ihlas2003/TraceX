@@ -30,7 +30,7 @@ TraceX is a Python-based Open Source Intelligence (OSINT) tool designed to demon
 
 **Clone the Repository**:
 ---------------------------
-	git clone [https://github.com/ihlas2003/TraceX.git](https://github.com/ihlas2003/TraceX.git)
+	git clone https://github.com/ihlas2003/TraceX.git
 
 **Run Tool**
 ------------

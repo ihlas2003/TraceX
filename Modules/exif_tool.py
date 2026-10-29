@@ -47,14 +47,26 @@ def extract_exif(path):
         print(f"⚠️ Error: {e}")
         return None
 
-def make_map(lat, lon, label="Photo location", out="Output/map.html"):
-    """HTML Map drawing using Folioum"""
+def make_map(lat, lon, label="Photo location", out="output/map.html"):
+    """HTML Map drawing using Folium with Esri WorldStreetMap (No API Key Required)"""
     os.makedirs(os.path.dirname(out), exist_ok=True)
-    m = folium.Map(location=[lat, lon], zoom_start=16)
+    
+    # 🎯 Esri WorldStreetMap Tiles (100% Free, Public, Zero API Key)
+    esri_tile = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}'
+    esri_attr = 'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China, TomTom'
+    
+    m = folium.Map(
+        location=[lat, lon], 
+        zoom_start=16, 
+        tiles=esri_tile,
+        attr=esri_attr
+    )
+    
     folium.Marker([lat, lon], popup=label, tooltip=label).add_to(m)
     m.save(out)
-    print(f"🗺️ Map Found: {out}")
+    print(f"🗺️ Map Generated Successfully: {out}")
     return out
+
 
 # Main execution for testing
 if __name__ == "__main__":
